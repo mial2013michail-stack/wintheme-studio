@@ -7,6 +7,13 @@
 Приложение написано на C# / WPF для .NET 10, собирается в один self-contained `.exe` для
 `win-x64` и работает от обычного пользователя.
 
+## Скачать
+
+[**WinTheme Studio 1.2.0 — GitHub Releases**](https://github.com/mial2013michail-stack/wintheme-studio/releases/latest)
+
+В релизе: портативный `WinThemeStudio.exe`, ZIP с документацией и скриншотами, а также
+`SHA256SUMS.txt`.
+
 ## Возможности
 
 - **Семь профилей одним кликом.** Windows 11, Aurora (в духе macOS), Aubergine (в духе Ubuntu),
