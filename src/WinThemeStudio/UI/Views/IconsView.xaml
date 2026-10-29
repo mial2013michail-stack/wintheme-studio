@@ -1,0 +1,122 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.IconsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+        <Border Style="{StaticResource CardTight}" Background="#0E172033" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,18,0">
+                    <TextBlock Text="18 иконок, 8 стилей и своя студия" Style="{StaticResource SettingTitle}" />
+                    <TextBlock Text="Иконки созданы с нуля и не содержат чужих логотипов. Стиль можно привязать к профилю, выбрать вручную или собрать свой: оттенок, скругление и монохром. Для любой категории можно подставить собственный .ico. Меняются ярлыки на рабочем столе, панели задач и в меню «Пуск», а также значки папок, корзины и дисков. Исходные файлы приложений не затрагиваются."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="640"
+                               HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Content="Обновить превью" Style="{StaticResource SmallButton}" Click="RefreshIcons_Click"
+                            Margin="0,0,7,0" />
+                    <Button Content="Открыть папку" Style="{StaticResource SmallButton}" Click="OpenIconsFolder_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <TextBlock Text="Студия иконок" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+            <StackPanel>
+                <TextBlock Text="Стиль и форма" Style="{StaticResource H3}" />
+                <TextBlock Text="«Авто» следует за активным профилем. «Студия» использует оттенок, скругление и монохром ниже. Остальные варианты — готовые стили профилей."
+                           Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,13,0,0">
+                    <TextBlock Text="Стиль" Style="{StaticResource SettingTitle}" FontSize="12.5"
+                               VerticalAlignment="Center" Margin="0,0,9,0" />
+                    <ComboBox x:Name="StyleBox" Style="{StaticResource ComboBoxStyle}" Width="188" />
+                    <TextBlock Text="Оттенок" Style="{StaticResource SettingTitle}" FontSize="12.5"
+                               VerticalAlignment="Center" Margin="18,0,9,0" />
+                    <TextBox x:Name="TintBox" Style="{StaticResource TextBoxStyle}" Width="104"
+                             ToolTip="HEX-код, например #7C5CFF. Пустое поле — без подкраски." />
+                    <Button Content="Применить студию" Style="{StaticResource SecondaryButton}" Margin="10,0,0,0"
+                            Click="ApplyStudio_Click" />
+                    <CheckBox x:Name="MonochromeToggle" Content="Монохром" Style="{StaticResource CheckBoxStyle}"
+                              VerticalAlignment="Center" Margin="16,0,0,0" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <TextBlock Text="Скругление" Style="{StaticResource SettingTitle}" FontSize="12.5"
+                               VerticalAlignment="Center" Margin="0,0,9,0" />
+                    <Slider x:Name="RadiusSlider" Style="{StaticResource SliderStyle}" Width="210"
+                            Minimum="0" Maximum="100" Value="54" VerticalAlignment="Center"
+                            ValueChanged="RadiusSlider_ValueChanged" />
+                    <TextBlock x:Name="RadiusValue" Text="54" Style="{StaticResource Caption}"
+                               VerticalAlignment="Center" Width="44" Margin="8,0,0,0" />
+                    <CheckBox x:Name="DriveIconsToggle" Content="Значки дисков" Style="{StaticResource CheckBoxStyle}"
+                              VerticalAlignment="Center" Margin="14,0,0,0" />
+                    <CheckBox x:Name="FullTrashToggle" Content="Полная корзина" Style="{StaticResource CheckBoxStyle}"
+                              VerticalAlignment="Center" Margin="18,0,0,0" />
+                </StackPanel>
+
+                <TextBlock x:Name="StudioStatus" Text="Студия готова." Style="{StaticResource Caption}"
+                           TextWrapping="Wrap" Margin="0,11,0,0" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="Коллекция" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+            <WrapPanel x:Name="IconGrid" />
+        </Border>
+
+        <TextBlock Text="Папки, корзина и диски" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Значки всех папок, корзины и дисков" Style="{StaticResource H3}" />
+                    <TextBlock x:Name="FolderIconState" Text="Системные значки" Style="{StaticResource SettingCaption}"
+                               TextWrapping="Wrap" />
+                    <TextBlock Text="Меняет значки папок, пустой и полной корзины, а также локальных дисков во всём Проводнике. После применения перезапустите Проводник на странице «Проводник», чтобы оболочка обновила значки."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="Применить" Style="{StaticResource SecondaryButton}" Click="ApplyFolderIcons_Click"
+                            Margin="0,0,7,0" />
+                    <Button Content="Вернуть системные" Style="{StaticResource SmallButton}" Click="RestoreFolderIcons_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <TextBlock Text="Ярлыки" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}">
+            <StackPanel>
+                <Grid Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Рабочий стол, панель задач и меню «Пуск»" Style="{StaticResource H3}" />
+                        <TextBlock x:Name="ShortcutCountLabel" Text="Загрузка ярлыков…"
+                                   Style="{StaticResource SettingCaption}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Content="Применить ко всем" Style="{StaticResource SecondaryButton}"
+                                Click="ApplyAll_Click" Margin="0,0,7,0" />
+                        <Button Content="Вернуть исходные" Style="{StaticResource SmallButton}"
+                                Click="RestoreAll_Click" />
+                    </StackPanel>
+                </Grid>
+
+                <Border Height="1" Background="{StaticResource StrokeBrush}" Margin="0,0,0,10" />
+                <ScrollViewer MaxHeight="410" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel x:Name="ShortcutList" />
+                </ScrollViewer>
+
+                <TextBlock Text="Если Проводник показывает старые значки, перезапустите его на странице «Проводник». Изменения ярлыков также записываются в журнал."
+                           Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,10,0,0" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</views:PageView>

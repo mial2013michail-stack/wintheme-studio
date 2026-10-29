@@ -1,0 +1,174 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="UiFont">Segoe UI Variable Text, Segoe UI</FontFamily>
+    <FontFamily x:Key="DisplayFont">Segoe UI Variable Display, Segoe UI</FontFamily>
+    <FontFamily x:Key="FluentIcons">Segoe Fluent Icons</FontFamily>
+
+    <SolidColorBrush x:Key="BgBrush" Color="#0B0D12" />
+    <SolidColorBrush x:Key="BgSoftBrush" Color="#0E1118" />
+    <SolidColorBrush x:Key="CardBrush" Color="#12151D" />
+    <SolidColorBrush x:Key="Card2Brush" Color="#171B25" />
+    <SolidColorBrush x:Key="Card3Brush" Color="#1B202C" />
+    <SolidColorBrush x:Key="StrokeBrush" Color="#1FFFFFFF" />
+    <SolidColorBrush x:Key="StrokeStrongBrush" Color="#33FFFFFF" />
+    <SolidColorBrush x:Key="TextBrush" Color="#F5F7FB" />
+    <SolidColorBrush x:Key="MutedBrush" Color="#99A3B7" />
+    <SolidColorBrush x:Key="DimBrush" Color="#6C7689" />
+    <SolidColorBrush x:Key="AccentBrush" Color="#7C5CFF" />
+    <SolidColorBrush x:Key="AccentSoftBrush" Color="#267C5CFF" />
+    <SolidColorBrush x:Key="AccentBorderBrush" Color="#667C5CFF" />
+    <SolidColorBrush x:Key="AccentTextBrush" Color="#B9A8FF" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="#45D6A0" />
+    <SolidColorBrush x:Key="SuccessSoftBrush" Color="#2045D6A0" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#FFB84D" />
+    <SolidColorBrush x:Key="WarningSoftBrush" Color="#20FFB84D" />
+    <SolidColorBrush x:Key="DangerBrush" Color="#FF6B85" />
+    <SolidColorBrush x:Key="DangerSoftBrush" Color="#26FF6B85" />
+
+    <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#8B5CFF" Offset="0" />
+        <GradientStop Color="#3B82F6" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="HeroGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#2A1A5E" Offset="0" />
+        <GradientStop Color="#152D63" Offset="0.55" />
+        <GradientStop Color="#0E1B33" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="AuroraPreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#0B1030" Offset="0" />
+        <GradientStop Color="#2A1560" Offset="0.45" />
+        <GradientStop Color="#0E3A63" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="AuberginePreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1A0614" Offset="0" />
+        <GradientStop Color="#4A1233" Offset="0.55" />
+        <GradientStop Color="#7A2B16" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="BloomPreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#04162E" Offset="0" />
+        <GradientStop Color="#0A3156" Offset="0.55" />
+        <GradientStop Color="#12698A" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MinimalPreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#07080C" Offset="0" />
+        <GradientStop Color="#11151D" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MidnightPreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#050814" Offset="0" />
+        <GradientStop Color="#0C142B" Offset="0.55" />
+        <GradientStop Color="#8A6D1F" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MintPreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#F2FCF8" Offset="0" />
+        <GradientStop Color="#CFEFE3" Offset="0.6" />
+        <GradientStop Color="#6FD6B4" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SunsetPreview" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1B0C24" Offset="0" />
+        <GradientStop Color="#3A121E" Offset="0.55" />
+        <GradientStop Color="#FF7A45" Offset="1" />
+    </LinearGradientBrush>
+
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource BgBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource UiFont}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource UiFont}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="H1" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DisplayFont}" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="LineHeight" Value="36" />
+    </Style>
+
+    <Style x:Key="H2" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DisplayFont}" />
+        <Setter Property="FontSize" Value="19" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+    </Style>
+
+    <Style x:Key="H3" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+    </Style>
+
+    <Style x:Key="Body" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="LineHeight" Value="21" />
+    </Style>
+
+    <Style x:Key="Muted" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+        <Setter Property="LineHeight" Value="19" />
+    </Style>
+
+    <Style x:Key="Caption" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{StaticResource DimBrush}" />
+    </Style>
+
+    <Style x:Key="Card" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource StrokeBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style x:Key="CardTight" TargetType="Border" BasedOn="{StaticResource Card}">
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="CornerRadius" Value="14" />
+    </Style>
+
+    <Style x:Key="HoverCard" TargetType="Border" BasedOn="{StaticResource Card}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Card2Brush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource StrokeStrongBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Pill" TargetType="Border">
+        <Setter Property="Background" Value="#14FFFFFF" />
+        <Setter Property="BorderBrush" Value="{StaticResource StrokeBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="99" />
+        <Setter Property="Padding" Value="10,4" />
+    </Style>
+
+    <Style x:Key="Divider" TargetType="Border">
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Background" Value="{StaticResource StrokeBrush}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+</ResourceDictionary>

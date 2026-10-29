@@ -1,0 +1,144 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+
+        <Border CornerRadius="20" Margin="0,0,0,16" BorderBrush="{StaticResource StrokeBrush}"
+                BorderThickness="1" Padding="24" Background="{StaticResource HeroGradient}">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Border Width="58" Height="58" CornerRadius="16" Background="{StaticResource AccentGradient}"
+                            VerticalAlignment="Center">
+                        <Path Data="M 12,2 C 13,7 14.6,8.6 19,9.5 C 14.6,10.4 13,12 12,17 C 11,12 9.4,10.4 5,9.5 C 9.4,8.6 11,7 12,2 Z"
+                              Fill="#FFFFFF" Stretch="Uniform" Width="31" Height="31" />
+                    </Border>
+                    <StackPanel Margin="17,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="WinTheme Studio" Style="{StaticResource H1}" FontSize="27" />
+                        <TextBlock x:Name="VersionText" Text="Версия 1.0.0" Style="{StaticResource Muted}"
+                                   Foreground="#C7D2E8" Margin="0,4,0,0" />
+                        <TextBlock Text="Безопасная и обратимая персонализация Windows 11"
+                                   Style="{StaticResource Muted}" Foreground="#AFC0DD" Margin="0,2,0,0" />
+                    </StackPanel>
+                </StackPanel>
+                <Border Style="{StaticResource Pill}" HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Background="#2A45D6A0" BorderBrush="#4045D6A0" Padding="12,7">
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="7" Height="7" Fill="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+                        <TextBlock Text="Без администратора" FontSize="11.5" Foreground="#A9EBD3" Margin="7,0,0,0" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="14" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Что приложение не делает" Style="{StaticResource H3}" Margin="0,0,0,10" />
+                    <TextBlock Text="• Не изменяет системные файлы, службы и драйверы" Style="{StaticResource Muted}" TextWrapping="Wrap" />
+                    <TextBlock Text="• Не патчит UxTheme, Explorer.exe и тему загрузки" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                    <TextBlock Text="• Не требует отключения проверки подписи и защиты Windows" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                    <TextBlock Text="• Не загружает сторонние логотипы и чужие обои" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                    <TextBlock Text="• Не запрашивает постоянные права администратора" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Ограничения" Style="{StaticResource H3}" Margin="0,0,0,10" />
+                    <TextBlock Text="• Глубина оформления ограничена документированными параметрами Windows 11" Style="{StaticResource Muted}" TextWrapping="Wrap" />
+                    <TextBlock Text="• Часть настроек панели задач и Проводника требует перезапуска оболочки" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                    <TextBlock Text="• Иконки применяются к ярлыкам .lnk, папкам и корзине, а не к файлам внутри программ" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                    <TextBlock Text="• Док — отдельное окно приложения, а не системная панель задач" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                    <TextBlock Text="• Системные элементы UWP могут кэшировать значки до обновления оболочки" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <TextBlock Text="Поведение приложения" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <StackPanel>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Запускать при входе в Windows" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Добавляет запись в HKCU\\...\\Run с ключом --tray. Отключается здесь же."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <CheckBox x:Name="AutoStartToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="AutoStart_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Сворачивать в трей при закрытии" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Кнопка закрытия скрывает окно, приложение продолжает работать. Выход — через меню значка в трее."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <CheckBox x:Name="CloseToTrayToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="CloseToTray_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF" Margin="0,0,0,10">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Точка восстановления Windows" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Необязательный дополнительный уровень защиты. Потребуется подтверждение UAC и включённая защита системы."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Content="Создать точку" Style="{StaticResource SmallButton}"
+                                HorizontalAlignment="Right" VerticalAlignment="Center" Click="RestorePoint_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF" Margin="0">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Восстановление системы Windows" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Открывает системное окно восстановления. Используйте, если изменения вносились вне WinTheme Studio."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Content="Открыть" Style="{StaticResource SmallButton}"
+                                HorizontalAlignment="Right" VerticalAlignment="Center" Click="SystemRestore_Click" />
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="Данные и лицензия" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Всё хранится локально" Style="{StaticResource H3}" />
+                    <TextBlock x:Name="DataPathText" Text="%LOCALAPPDATA%\\WinThemeStudio"
+                               Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                    <TextBlock Text="Конфигурация, журнал, резервные копии, сгенерированные обои и набор иконок. Сетевых запросов и телеметрии нет."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="600"
+                               HorizontalAlignment="Left" Margin="0,6,0,0" />
+                    <TextBlock Text="Код и оригинальная графика распространяются по лицензии MIT. Названия Windows, macOS и Ubuntu принадлежат их правообладателям; профили лишь вдохновлены стилем и не содержат чужих логотипов."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="600"
+                               HorizontalAlignment="Left" Margin="0,10,0,0" />
+                    <TextBlock Text="© 2026 WinTheme Studio. Сделано без сторонних NuGet-пакетов."
+                               Style="{StaticResource Caption}" Margin="0,10,0,0" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
+                    <Button Content="Открыть папку данных" Style="{StaticResource SecondaryButton}"
+                            Click="OpenData_Click" Margin="0,0,0,8" />
+                    <Button Content="Открыть журнал" Style="{StaticResource SmallButton}" Click="OpenLogs_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </StackPanel>
+</views:PageView>

@@ -1,0 +1,125 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.ProfilesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+        <Border Style="{StaticResource CardTight}" Background="#0E172033" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,18,0">
+                    <TextBlock Text="Один клик — целостный образ" Style="{StaticResource SettingTitle}" />
+                    <TextBlock Text="Профиль применяет тему, акцент, обои, панель задач, параметры Проводника и значки. Док не включается. Все предыдущие значения сохраняются в журнал."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                </StackPanel>
+                <Border Grid.Column="1" Style="{StaticResource Pill}" HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Background="{StaticResource SuccessSoftBrush}" BorderBrush="#3045D6A0">
+                    <TextBlock Text="Обратимо" FontSize="11.5" Foreground="#9BE9CB" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Style="{StaticResource CardTight}" Margin="0,0,0,14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Что применять" Style="{StaticResource SettingTitle}" />
+                    <TextBlock Text="Снимите галочки с разделов, которые нужно оставить без изменений. Настройка запоминается и действует для любого профиля."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                    <WrapPanel Margin="0,11,0,0">
+                        <CheckBox x:Name="ApplyThemeToggle" Content="Тема и акцент" Style="{StaticResource CheckBoxStyle}"
+                                  Margin="0,0,22,8" Click="ApplyOption_Click" />
+                        <CheckBox x:Name="ApplyWallpaperToggle" Content="Обои" Style="{StaticResource CheckBoxStyle}"
+                                  Margin="0,0,22,8" Click="ApplyOption_Click" />
+                        <CheckBox x:Name="ApplyTaskbarToggle" Content="Панель задач" Style="{StaticResource CheckBoxStyle}"
+                                  Margin="0,0,22,8" Click="ApplyOption_Click" />
+                        <CheckBox x:Name="ApplyExplorerToggle" Content="Проводник" Style="{StaticResource CheckBoxStyle}"
+                                  Margin="0,0,22,8" Click="ApplyOption_Click" />
+                        <CheckBox x:Name="ApplyIconsToggle" Content="Значки" Style="{StaticResource CheckBoxStyle}"
+                                  Margin="0,0,22,8" Click="ApplyOption_Click" />
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="18,2,0,0">
+                    <Button Content="Выбрать всё" Style="{StaticResource LinkButton}" Click="SelectAll_Click" Margin="0,0,14,0" />
+                    <Button Content="Снять всё" Style="{StaticResource LinkButton}" Click="SelectNone_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Style="{StaticResource CardTight}" Margin="0,0,0,14">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="0,0,18,0">
+                        <TextBlock Text="Ежедневное применение" Style="{StaticResource SettingTitle}" />
+                        <TextBlock Text="Раз в сутки WinTheme Studio применит выбранный профиль. Если на экране полноэкранная игра или видео, запуск откладывается."
+                                   Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <CheckBox x:Name="SchedulerToggle" Grid.Column="1" Style="{StaticResource ToggleSwitch}"
+                              VerticalAlignment="Center" Click="SchedulerToggle_Click" />
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <ComboBox x:Name="SchedulerProfileBox" Style="{StaticResource ComboBoxStyle}" Width="196" />
+                    <TextBox x:Name="SchedulerTimeBox" Style="{StaticResource TextBoxStyle}" Width="86" Margin="10,0,0,0"
+                             ToolTip="Время в формате ЧЧ:ММ" />
+                    <Button Content="Сохранить расписание" Style="{StaticResource SmallButton}" Margin="10,0,0,0"
+                            Click="SaveScheduler_Click" />
+                    <TextBlock x:Name="SchedulerStatus" Style="{StaticResource Caption}" VerticalAlignment="Center"
+                               Margin="14,0,0,0" TextWrapping="Wrap" MaxWidth="430" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="PreviewPanel" Style="{StaticResource CardTight}" Background="#101B2A44"
+                BorderBrush="{StaticResource AccentBorderBrush}" Visibility="Collapsed" Margin="0,0,0,14">
+            <StackPanel>
+                <Grid>
+                    <TextBlock x:Name="PreviewTitle" Text="Предпросмотр" Style="{StaticResource SettingTitle}" />
+                    <Button Content="Закрыть" Style="{StaticResource LinkButton}" HorizontalAlignment="Right"
+                            Click="ClosePreview_Click" />
+                </Grid>
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="14" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource CardTight}" Background="#0AFFFFFF" Padding="14">
+                        <StackPanel x:Name="CurrentPreview" />
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource CardTight}" Background="#0AFFFFFF" Padding="14">
+                        <StackPanel x:Name="TargetPreview" />
+                    </Border>
+                </Grid>
+                <StackPanel x:Name="PlanList" Margin="0,12,0,0" />
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <Button x:Name="PreviewApplyButton" Content="Применить профиль" Style="{StaticResource PrimaryButton}"
+                            Padding="16,9,16,9" Click="PreviewApply_Click" />
+                    <TextBlock x:Name="PreviewHint" Style="{StaticResource Caption}" VerticalAlignment="Center"
+                               Margin="12,0,0,0" TextWrapping="Wrap" MaxWidth="520" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="BusyPanel" Style="{StaticResource CardTight}" Background="#1612264A"
+                BorderBrush="{StaticResource AccentBorderBrush}" Margin="0,0,0,14" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="8" Height="8" Fill="{StaticResource AccentTextBrush}" VerticalAlignment="Center" />
+                <TextBlock x:Name="BusyText" Text="Применение профиля…" Style="{StaticResource Body}"
+                           Margin="10,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+        <WrapPanel x:Name="ProfileCards" />
+    </StackPanel>
+</views:PageView>

@@ -1,0 +1,116 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.RestoreView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+
+        <Border Style="{StaticResource CardTight}" Background="#0E172033" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,18,0">
+                    <TextBlock Text="Полный откат без переустановки Windows" Style="{StaticResource SettingTitle}" />
+                    <TextBlock Text="Журнал хранит исходные значения реестра и резервные копии изменённых ярлыков. Отмена восстанавливает их в обратном порядке."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="640"
+                               HorizontalAlignment="Left" />
+                </StackPanel>
+                <Button Grid.Column="1" Content="Открыть папку резервных копий" Style="{StaticResource SmallButton}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Click="OpenBackups_Click" />
+            </Grid>
+        </Border>
+
+        <UniformGrid Columns="3" Margin="0,0,0,16">
+            <Border Style="{StaticResource CardTight}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Активных действий" Style="{StaticResource Caption}" />
+                    <TextBlock x:Name="ChangesCount" Text="0" Style="{StaticResource H2}" FontSize="22" Margin="0,6,0,0" />
+                    <TextBlock Text="записей в журнале" Style="{StaticResource Caption}" Margin="0,3,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardTight}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Изменённых параметров" Style="{StaticResource Caption}" />
+                    <TextBlock x:Name="EntriesCount" Text="0" Style="{StaticResource H2}" FontSize="22" Margin="0,6,0,0" />
+                    <TextBlock Text="значений и файлов" Style="{StaticResource Caption}" Margin="0,3,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardTight}">
+                <StackPanel>
+                    <TextBlock Text="Резервные копии" Style="{StaticResource Caption}" />
+                    <TextBlock x:Name="BackupSize" Text="0 Б" Style="{StaticResource H2}" FontSize="22" Margin="0,6,0,0" />
+                    <TextBlock Text="на диске" Style="{StaticResource Caption}" Margin="0,3,0,0" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,18,0">
+                    <TextBlock Text="Быстрый откат" Style="{StaticResource H3}" />
+                    <TextBlock Text="Начните с последнего действия или верните всё сразу. После отката настройки применяются системой немедленно."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="540"
+                               HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button x:Name="UndoLastButton" Content="Отменить последнее" Style="{StaticResource SecondaryButton}"
+                            Click="UndoLast_Click" Margin="0,0,8,0" />
+                    <Button x:Name="UndoAllButton" Content="Отменить всё" Style="{StaticResource DangerButton}"
+                            Click="UndoAll_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Style="{StaticResource CardTight}" Background="#0E172033" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid Margin="0,0,9,0">
+                    <TextBox x:Name="JournalSearch" Style="{StaticResource TextBoxStyle}"
+                             ToolTip="Поиск по названию действия и параметрам"
+                             TextChanged="JournalSearch_TextChanged" />
+                    <TextBlock x:Name="JournalSearchHint" Text="Поиск по журналу" IsHitTestVisible="False"
+                               Foreground="{StaticResource DimBrush}" FontSize="12.5"
+                               VerticalAlignment="Center" Margin="12,0,0,0" />
+                </Grid>
+                <ComboBox x:Name="JournalFilter" Grid.Column="1" Style="{StaticResource ComboBoxStyle}"
+                          Width="168" SelectedIndex="0" SelectionChanged="JournalFilter_SelectionChanged"
+                          Margin="0,0,9,0">
+                    <ComboBoxItem Content="Все действия" Tag="all" />
+                    <ComboBoxItem Content="Активные" Tag="active" />
+                    <ComboBoxItem Content="Отменённые" Tag="undone" />
+                </ComboBox>
+                <Button Grid.Column="2" Content="Очистить отменённые" Style="{StaticResource SmallButton}"
+                        Click="CleanupUndone_Click" />
+            </Grid>
+        </Border>
+
+        <Grid Margin="0,0,0,12">
+            <TextBlock Text="История изменений" Style="{StaticResource SectionTitle}" Margin="0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock x:Name="HistoryCount" Text="" Style="{StaticResource Caption}"
+                           VerticalAlignment="Center" Margin="0,0,12,0" />
+                <Button Content="Обновить" Style="{StaticResource LinkButton}"
+                        VerticalAlignment="Center" Click="Refresh_Click" />
+            </StackPanel>
+        </Grid>
+
+        <Border Style="{StaticResource Card}">
+            <StackPanel>
+                <StackPanel x:Name="JournalListPanel" />
+                <TextBlock Text="В журнал попадают только действия WinTheme Studio. Отмена не затрагивает изменения, сделанные вручную в параметрах Windows."
+                           Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,10,0,0" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</views:PageView>

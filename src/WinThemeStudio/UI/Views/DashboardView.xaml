@@ -1,0 +1,212 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+
+        <Border MinHeight="244" CornerRadius="20" ClipToBounds="True" BorderBrush="{StaticResource StrokeBrush}"
+                BorderThickness="1" Margin="0,0,0,18">
+            <Grid>
+                <Image x:Name="HeroImage" Stretch="UniformToFill" Opacity="0.65" />
+                <Border Background="{StaticResource HeroGradient}" Opacity="0.82" />
+                <Grid Margin="30,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" MaxWidth="570"
+                                HorizontalAlignment="Left" Margin="0,0,24,0">
+                        <Border Style="{StaticResource Pill}" HorizontalAlignment="Left" Background="#26FFFFFF"
+                                BorderBrush="#40FFFFFF" Padding="10,4">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="6" Height="6" Fill="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+                                <TextBlock Text="Персональный образ Windows" FontSize="11.5" FontWeight="SemiBold"
+                                           Foreground="#EAF0FF" Margin="7,0,0,0" />
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Text="Windows, который хочется открывать" Style="{StaticResource H1}"
+                                   FontSize="29" Margin="0,14,0,0" TextWrapping="Wrap" />
+                        <TextBlock Text="Тема, акцент, обои, Проводник и иконки — без патчей системы и с полным откатом."
+                                   Style="{StaticResource Muted}" Foreground="#C7D2E8" Margin="0,8,0,0"
+                                   TextWrapping="Wrap" MaxWidth="520" HorizontalAlignment="Left" />
+                        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                            <Button Content="Выбрать профиль" Style="{StaticResource PrimaryButton}"
+                                    Click="OpenProfiles_Click" />
+                            <Button Content="Настроить вручную" Style="{StaticResource SecondaryButton}"
+                                    Margin="10,0,0,0" Click="OpenAppearance_Click" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Border Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="218" Padding="16"
+                            CornerRadius="16" Background="#B30A0D15" BorderBrush="#40FFFFFF" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="ТЕКУЩИЙ ПРОФИЛЬ" Style="{StaticResource Caption}" Foreground="#A9B6CE" />
+                            <TextBlock x:Name="CurrentProfileName" Text="Windows 11" FontSize="22" FontWeight="SemiBold"
+                                       FontFamily="{StaticResource DisplayFont}" Margin="0,6,0,0" />
+                            <TextBlock x:Name="CurrentProfileTag" Text="Чистый системный вид" Style="{StaticResource Muted}"
+                                       Foreground="#B9C4D8" Margin="0,3,0,0" />
+                            <Border Height="1" Background="#26FFFFFF" Margin="0,12,0,12" />
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse x:Name="ProfileAccentDot" Width="10" Height="10" VerticalAlignment="Center"
+                                         Fill="{StaticResource AccentBrush}" />
+                                <TextBlock x:Name="ProfileAccentHex" Text="#0078D4" FontSize="12.5" FontWeight="SemiBold"
+                                           Foreground="#DCE4F4" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <UniformGrid Columns="4" Margin="0,0,0,18">
+            <Border Style="{StaticResource CardTight}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Тема" Style="{StaticResource Caption}" />
+                    <TextBlock x:Name="ThemeValue" Text="Тёмная" Style="{StaticResource H2}" FontSize="18" Margin="0,7,0,0" />
+                    <TextBlock x:Name="ThemeHint" Text="Приложения и система" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardTight}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Акцент" Style="{StaticResource Caption}" />
+                    <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                        <Border x:Name="AccentDot" Width="14" Height="14" CornerRadius="7"
+                                Background="{StaticResource AccentBrush}" VerticalAlignment="Center" />
+                        <TextBlock x:Name="AccentValue" Text="#7C5CFF" Style="{StaticResource H2}" FontSize="18"
+                                   Margin="8,0,0,0" />
+                    </StackPanel>
+                    <TextBlock Text="Цвет системы и панели" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardTight}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Обои" Style="{StaticResource Caption}" />
+                    <TextBlock x:Name="WallpaperValue" Text="Aurora" Style="{StaticResource H2}" FontSize="18"
+                               Margin="0,7,0,0" TextTrimming="CharacterEllipsis" />
+                    <TextBlock x:Name="WallpaperHint" Text="Оригинальная композиция" Style="{StaticResource Caption}"
+                               Margin="0,4,0,0" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardTight}">
+                <StackPanel>
+                    <TextBlock Text="Журнал" Style="{StaticResource Caption}" />
+                    <TextBlock x:Name="ChangesValue" Text="0" Style="{StaticResource H2}" FontSize="18" Margin="0,7,0,0" />
+                    <TextBlock x:Name="ChangesHint" Text="Изменений нет" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <TextBlock Text="Быстрые действия" Style="{StaticResource SectionTitle}" />
+        <UniformGrid Columns="4" Margin="0,0,0,18">
+            <Button Style="{StaticResource SecondaryButton}" Height="78" Margin="0,0,10,0" Padding="14,10"
+                    HorizontalContentAlignment="Stretch" Click="OpenAppearance_Click">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Text="Внешний вид" FontSize="13.5" FontWeight="SemiBold" />
+                    <TextBlock Text="Тема, акцент, обои" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource SecondaryButton}" Height="78" Margin="0,0,10,0" Padding="14,10"
+                    HorizontalContentAlignment="Stretch" Click="OpenIcons_Click">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Text="Иконки ярлыков" FontSize="13.5" FontWeight="SemiBold" />
+                    <TextBlock Text="17 оригинальных образов" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource SecondaryButton}" Height="78" Margin="0,0,10,0" Padding="14,10"
+                    HorizontalContentAlignment="Stretch" Click="OpenDock_Click">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Text="Док" FontSize="13.5" FontWeight="SemiBold" />
+                    <TextBlock Text="Плавающий док снизу" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource SecondaryButton}" Height="78" Padding="14,10"
+                    HorizontalContentAlignment="Stretch" Click="OpenRestore_Click">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Text="Восстановление" FontSize="13.5" FontWeight="SemiBold" />
+                    <TextBlock Text="Откат в один клик" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                </StackPanel>
+            </Button>
+        </UniformGrid>
+
+        <Grid Margin="0,0,0,18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource Card}">
+                <StackPanel>
+                    <Grid Margin="0,0,0,12">
+                        <TextBlock Text="Последние изменения" Style="{StaticResource H3}" />
+                        <Button Content="Открыть журнал" Style="{StaticResource LinkButton}" HorizontalAlignment="Right"
+                                Click="OpenRestore_Click" />
+                    </Grid>
+                    <StackPanel x:Name="JournalListPanel" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Безопасность" Style="{StaticResource H3}" Margin="0,0,0,12" />
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Path Width="17" Height="17" Stretch="Uniform" StrokeThickness="1.5" StrokeLineJoin="Round"
+                              Stroke="{StaticResource SuccessBrush}"
+                              Data="M 12,3 L 20,6 L 20,11 C 20,16 16,19 12,21 C 8,19 4,16 4,11 L 4,6 Z M 8.5,12 L 11,14.5 L 15.5,9.5" />
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="Только HKCU и профиль пользователя" Style="{StaticResource SettingTitle}" FontSize="13" />
+                            <TextBlock Text="Системные файлы, службы и драйверы не затрагиваются."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Path Width="17" Height="17" Stretch="Uniform" StrokeThickness="1.5" StrokeLineJoin="Round"
+                              Stroke="{StaticResource SuccessBrush}"
+                              Data="M 4,12 A 8,8 0 1 0 12,4 M 12,4 L 12,8 M 12,4 L 8.5,7" />
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="Резервная копия перед изменением" Style="{StaticResource SettingTitle}" FontSize="13" />
+                            <TextBlock Text="Каждое действие записывается в журнал и может быть отменено."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Path Width="17" Height="17" Stretch="Uniform" StrokeThickness="1.5" StrokeLineJoin="Round"
+                              Stroke="{StaticResource SuccessBrush}"
+                              Data="M 12,3 A 9,9 0 1 0 12,21 A 9,9 0 1 0 12,3 M 8.5,12 L 11,14.5 L 15.5,9.5" />
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="Без прав администратора" Style="{StaticResource SettingTitle}" FontSize="13" />
+                            <TextBlock Text="Обычный запуск от текущего пользователя. UAC нужен только для точки восстановления."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border Style="{StaticResource CardTight}" Background="#0E1A2230">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="Накладки рабочего стола" Style="{StaticResource SettingTitle}" />
+                    <TextBlock x:Name="OverlayValue" Text="Выключены"
+                               Style="{StaticResource SettingCaption}" />
+                </StackPanel>
+                <Button Content="Настроить" Style="{StaticResource SmallButton}" HorizontalAlignment="Right"
+                        VerticalAlignment="Center" Click="OpenDock_Click" />
+            </Grid>
+        </Border>
+    </StackPanel>
+</views:PageView>

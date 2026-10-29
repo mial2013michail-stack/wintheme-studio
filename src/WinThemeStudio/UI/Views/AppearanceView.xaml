@@ -1,0 +1,165 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.AppearanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Тема оформления" Style="{StaticResource H3}" />
+                    <TextBlock Text="Выберите светлую или тёмную основу. Изменение применяется сразу и записывается в журнал."
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="470"
+                               HorizontalAlignment="Left" />
+                    <Border Style="{StaticResource SegmentGroup}" Margin="0,14,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="LightTheme" Style="{StaticResource SegmentItem}" GroupName="ThemeMode"
+                                         Content="Светлая" Checked="Theme_Checked" />
+                            <RadioButton x:Name="DarkTheme" Style="{StaticResource SegmentItem}" GroupName="ThemeMode"
+                                         Content="Тёмная" Checked="Theme_Checked" Margin="3,0,0,0" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Border Grid.Column="1" Width="230" Height="158" CornerRadius="14" ClipToBounds="True"
+                        BorderBrush="{StaticResource StrokeBrush}" BorderThickness="1" VerticalAlignment="Center">
+                    <Grid>
+                        <Border x:Name="ThemePreview" Background="#F2F6FB" />
+                        <Grid Margin="14,12">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="9" Height="9" Fill="#E5484D" />
+                                    <Ellipse Width="9" Height="9" Fill="#F5A524" Margin="5,0,0,0" />
+                                    <Ellipse Width="9" Height="9" Fill="#30A46C" Margin="5,0,0,0" />
+                                </StackPanel>
+                                <Border x:Name="ThemeWindow" Height="30" CornerRadius="7" Background="#E1E9F3" Margin="0,12,0,0" />
+                                <Border x:Name="ThemeHeader" Height="38" CornerRadius="7" Background="#FFFFFF" Margin="0,7,0,0" />
+                                <Border x:Name="ThemeLine" Height="6" Width="70" CornerRadius="3" Background="#B8C7D9"
+                                        HorizontalAlignment="Left" Margin="0,8,0,0" />
+                            </StackPanel>
+                        </Grid>
+                        <Border x:Name="ThemeAccentBar" VerticalAlignment="Bottom" Height="18" Background="#DD0078D4" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="0,0,18,0">
+                        <TextBlock Text="Акцентный цвет" Style="{StaticResource H3}" />
+                        <TextBlock Text="Цвет кнопок, подсветки и элементов системы. Windows использует формат #RRGGBB."
+                                   Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="500"
+                                   HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Border x:Name="AccentPreview" Width="22" Height="22" CornerRadius="11"
+                                Background="{StaticResource AccentBrush}" />
+                        <TextBlock x:Name="AccentLabel" Text="#0078D4" FontSize="13" FontWeight="SemiBold"
+                                   VerticalAlignment="Center" Margin="8,0,0,0" />
+                    </StackPanel>
+                </Grid>
+
+                <WrapPanel x:Name="AccentPalette" Margin="0,15,0,0" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,13,0,0">
+                    <TextBox x:Name="CustomAccentBox" Style="{StaticResource TextBoxStyle}" Width="126"
+                             Text="#7C5CFF" MaxLength="7" />
+                    <Button Content="Применить цвет" Style="{StaticResource SecondaryButton}" Margin="9,0,0,0"
+                            Click="ApplyCustomAccent_Click" />
+                    <Button Content="Взять с обоев" Style="{StaticResource SmallButton}" Margin="9,0,0,0"
+                            Click="AccentFromWallpaper_Click" />
+                    <TextBlock Text="Можно ввести свой HEX-код" Style="{StaticResource Caption}"
+                               VerticalAlignment="Center" Margin="12,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <StackPanel>
+                <Grid Margin="0,0,0,13">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="0,0,18,0">
+                        <TextBlock Text="Обои" Style="{StaticResource H3}" />
+                        <TextBlock Text="Пять оригинальных композиций, созданных специально для WinTheme Studio. Исходные обои Windows сохраняются."
+                                   Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="580"
+                                   HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Content="Своё изображение" Style="{StaticResource SmallButton}"
+                                Click="CustomWallpaper_Click" Margin="0,0,7,0" />
+                        <Button Content="Вернуть исходные" Style="{StaticResource SmallButton}"
+                                Click="RestoreWallpaper_Click" />
+                    </StackPanel>
+                </Grid>
+
+                <WrapPanel x:Name="WallpaperList" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,13,0,0">
+                    <TextBlock Text="Режим отображения" Style="{StaticResource SettingTitle}" FontSize="12.5"
+                               VerticalAlignment="Center" Margin="0,0,12,0" />
+                    <Border Style="{StaticResource SegmentGroup}">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="FitFill" Style="{StaticResource SegmentItem}" GroupName="WallpaperFit"
+                                         Content="Заполнить" Tag="fill" Checked="Fit_Checked" />
+                            <RadioButton x:Name="FitFit" Style="{StaticResource SegmentItem}" GroupName="WallpaperFit"
+                                         Content="Вписать" Tag="fit" Checked="Fit_Checked" Margin="3,0,0,0" />
+                            <RadioButton x:Name="FitStretch" Style="{StaticResource SegmentItem}" GroupName="WallpaperFit"
+                                         Content="Растянуть" Tag="stretch" Checked="Fit_Checked" Margin="3,0,0,0" />
+                            <RadioButton x:Name="FitCenter" Style="{StaticResource SegmentItem}" GroupName="WallpaperFit"
+                                         Content="По центру" Tag="center" Checked="Fit_Checked" Margin="3,0,0,0" />
+                            <RadioButton x:Name="FitTile" Style="{StaticResource SegmentItem}" GroupName="WallpaperFit"
+                                         Content="Замостить" Tag="tile" Checked="Fit_Checked" Margin="3,0,0,0" />
+                            <RadioButton x:Name="FitCrop" Style="{StaticResource SegmentItem}" GroupName="WallpaperFit"
+                                         Content="Обрезать" Tag="crop" Checked="Fit_Checked" Margin="3,0,0,0" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <TextBlock x:Name="WallpaperStatus" Text="Оригинальные обои Windows сохранены в личной папке приложения."
+                           Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,8,0,0" />
+            </StackPanel>
+        </Border>
+
+        <Border Style="{StaticResource Card}">
+            <StackPanel>
+                <TextBlock Text="Эффекты" Style="{StaticResource H3}" Margin="0,0,0,10" />
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Прозрачность Windows" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Полупрозрачные панели, меню и фон панели задач."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <CheckBox x:Name="TransparencyToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="Transparency_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF" Margin="0">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Анимации" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Плавное открытие окон и анимация панели задач."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <CheckBox x:Name="AnimationsToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="Animations_Click" />
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</views:PageView>

@@ -1,0 +1,157 @@
+<views:PageView xmlns:views="clr-namespace:WinThemeStudio.UI.Views" x:Class="WinThemeStudio.UI.Views.DockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <StackPanel Margin="0,0,4,8">
+
+        <Border Style="{StaticResource CardTight}" Background="#0E172033" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,18,0">
+                    <TextBlock Text="Плавающий док поверх рабочего стола" Style="{StaticResource SettingTitle}" />
+                    <TextBlock x:Name="DockStatus" Text="Док выключен"
+                               Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="620"
+                               HorizontalAlignment="Left" />
+                </StackPanel>
+                <Border Grid.Column="1" Style="{StaticResource Pill}" Background="{StaticResource AccentSoftBrush}"
+                        BorderBrush="{StaticResource AccentBorderBrush}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Вкл / выкл в один клик" FontSize="11" Foreground="{StaticResource AccentTextBrush}" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Style="{StaticResource CardTight}" Background="#0A9AA3B2" Margin="0,0,0,18">
+            <TextBlock Text="Док — необязательное дополнение. Профили его не включают: тема, обои, Проводник и значки применяются без дока. Включайте док здесь только если он вам действительно нужен."
+                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" MaxWidth="900"
+                       HorizontalAlignment="Left" />
+        </Border>
+
+        <TextBlock Text="Док" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <StackPanel>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF" Margin="0,0,0,12">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Включить док" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Плавающая панель с избранными приложениями. Автоматически скрывается в полноэкранных играх."
+                                       Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <CheckBox x:Name="DockEnabledToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="DockEnabled_Click" />
+                    </Grid>
+                </Border>
+
+                <Grid Margin="0,0,0,13">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Положение" Style="{StaticResource SettingTitle}" />
+                        <TextBlock Text="Край экрана для дока" Style="{StaticResource SettingCaption}" />
+                    </StackPanel>
+                    <Border Grid.Column="1" Style="{StaticResource SegmentGroup}" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="DockBottom" Style="{StaticResource SegmentItem}" GroupName="DockPos"
+                                         Content="Снизу" Tag="bottom" Checked="DockPosition_Checked" />
+                            <RadioButton x:Name="DockLeft" Style="{StaticResource SegmentItem}" GroupName="DockPos"
+                                         Content="Слева" Tag="left" Checked="DockPosition_Checked" Margin="3,0,0,0" />
+                            <RadioButton x:Name="DockRight" Style="{StaticResource SegmentItem}" GroupName="DockPos"
+                                         Content="Справа" Tag="right" Checked="DockPosition_Checked" Margin="3,0,0,0" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Размер значков" Style="{StaticResource SettingTitle}" />
+                        <TextBlock Text="От 32 до 84 пикселей" Style="{StaticResource SettingCaption}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Width="290">
+                        <Slider x:Name="DockSizeSlider" Style="{StaticResource SliderStyle}" Minimum="32" Maximum="84"
+                                Width="220" VerticalAlignment="Center" ValueChanged="DockSize_ValueChanged" />
+                        <TextBlock x:Name="DockSizeLabel" Text="48 px" Style="{StaticResource Caption}"
+                                   Width="54" TextAlignment="Right" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Автоматически скрывать" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Док уезжает за край, когда курсор не наведён." Style="{StaticResource SettingCaption}" />
+                        </StackPanel>
+                        <CheckBox x:Name="DockAutoHideToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="DockAutoHide_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Размытие фона" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Полупрозрачная подложка дока с акриловым эффектом." Style="{StaticResource SettingCaption}" />
+                        </StackPanel>
+                        <CheckBox x:Name="DockBlurToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="DockBlur_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Увеличение при наведении" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Значок плавно увеличивается под курсором." Style="{StaticResource SettingCaption}" />
+                        </StackPanel>
+                        <CheckBox x:Name="DockMagnifyToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="DockMagnify_Click" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingRow}" Background="#0AFFFFFF" Margin="0">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Скрывать в полноэкранных приложениях" Style="{StaticResource SettingTitle}" />
+                            <TextBlock Text="Док не мешает играм и видеоплеерам." Style="{StaticResource SettingCaption}" />
+                        </StackPanel>
+                        <CheckBox x:Name="DockFullscreenToggle" Style="{StaticResource ToggleSwitch}"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Click="DockFullscreen_Click" />
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="Содержимое дока" Style="{StaticResource SectionTitle}" />
+        <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+            <StackPanel>
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,0,18,0">
+                        <TextBlock Text="Приложения" Style="{StaticResource H3}" />
+                        <TextBlock Text="Встроенные элементы и собственные ярлыки. Порядок запуска не меняется."
+                                   Style="{StaticResource SettingCaption}" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <ComboBox x:Name="BuiltinCombo" Style="{StaticResource ComboBoxStyle}" Width="172"
+                                  Margin="0,0,7,0" />
+                        <Button Content="Добавить" Style="{StaticResource SmallButton}" Click="AddBuiltin_Click" Margin="0,0,7,0" />
+                        <Button Content="Своё приложение" Style="{StaticResource SmallButton}" Click="AddApp_Click" Margin="0,0,7,0" />
+                        <Button Content="Сбросить" Style="{StaticResource GhostButton}" FontSize="11.5"
+                                Padding="8,5,8,5" Click="ResetItems_Click" />
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel x:Name="DockItemsPanel" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</views:PageView>
