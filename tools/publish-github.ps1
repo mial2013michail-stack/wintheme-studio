@@ -121,7 +121,7 @@ if ($LASTEXITCODE -ne 0) {
 $releaseExists = $LASTEXITCODE -eq 0
 
 if ($releaseExists) {
-    & $gh release upload $Tag @assets --repo $fullName --clobber
+    & $gh release upload $Tag $assets --repo $fullName --clobber
     if ($LASTEXITCODE -ne 0) {
         throw 'Could not upload the release assets.'
     }
@@ -131,7 +131,7 @@ if ($releaseExists) {
         throw 'Could not update the release notes.'
     }
 } else {
-    & $gh release create $Tag @assets --repo $fullName --title $Title --notes-file $notes
+    & $gh release create $Tag $assets --repo $fullName --title $Title --notes-file $notes
     if ($LASTEXITCODE -ne 0) {
         throw 'Could not create the release.'
     }
