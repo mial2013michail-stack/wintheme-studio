@@ -20,7 +20,7 @@ param(
     [string]$Title = 'WinTheme Studio 1.2.0'
 )
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
 
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $releaseDir = Join-Path $root 'release'
@@ -92,8 +92,8 @@ if (-not [string]::IsNullOrWhiteSpace(($dirty -join ''))) {
 }
 
 $fullName = "$login/$RepoName"
-$remote = (& git -C $root remote get-url origin 2>$null)
-$hasRemote = $LASTEXITCODE -eq 0 -and -not [string]::IsNullOrWhiteSpace($remote)
+$remotes = & git -C $root remote
+$hasRemote = $remotes -contains 'origin'
 
 if (-not $hasRemote) {
     & $gh repo view $fullName --json name 2>$null | Out-Null
